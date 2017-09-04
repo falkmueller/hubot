@@ -1,0 +1,34 @@
+{
+    "name": "falkm/hubot",
+    "type": "library",
+    "description": "Hubot Framework",
+    "keywords": [
+        "php",
+        "framework",
+	"bot",
+	"chatbot"
+    ],
+    "homepage": "http://falk-m.de/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Falk Müller",
+            "email": "git@falk-m.de"
+        }
+    ],
+    "support": {
+        "email": "git@falk-m.de",
+        "wiki": "http://falk-m.de/"
+    },
+    "require": {
+        "php": ">=5.5.0",
+        "falkm/hubert": "1.*",
+        "falkm/hubert-template": "1.*",
+        "falkm/hubert-logger": "1.*",
+        "falkm/hubert-session": "1.*",
+        "phpFastCache/phpFastCache": "5.*"
+    },
+    "autoload": {
+        "psr-4": {"hubot\\": "src" }
+    }
+}
