@@ -1,7 +1,6 @@
 var bot = {
     
     send: function(message){
-      console.log(message);  
       
       var $spinner = $("<div class='clearfix'><div class='message_bot_wait'><div class='spinner'><div class='bounce1'></div><div class='bounce2'></div><div class='bounce3'></div></div></div></div>")
       $("#dialog").append($spinner);
@@ -14,6 +13,23 @@ var bot = {
           success: function(message){
                 $spinner.remove();
                 $("#dialog").append("<div class='clearfix'><div class='message_bot'>" + message.text + "</div></div>");
+                
+                var tagName = $("#message").prop("tagName").toLowerCase();
+                var newTagName = "input";
+                
+                if(message.replyType && message.replyType == "text"){
+                    newTagName = "textarea";
+                }
+                
+                if(tagName != newTagName){
+                    var $newInputElement = $("<" + newTagName + "/>");
+                    $.each($("#message")[0].attributes, function() {
+                        if(this.specified) {
+                           $newInputElement.attr(this.name, this.value);
+                          }
+                    });
+                    $("#message").replaceWith($newInputElement);
+                }
           }
       });
       

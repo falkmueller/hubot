@@ -19,8 +19,16 @@ h1 {
     font-weight: normal;
 }
 
+form {
+    margin-bottom: 20px;
+}
+
 .input-group .form-control {
     border-radius: 0;
+}
+
+.input-group-btn {
+    background-color: #fff;
 }
 
 .input-group-btn .btn {

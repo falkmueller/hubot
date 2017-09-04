@@ -20,7 +20,11 @@ class web extends \hubot\generic\driver {
     }
     
     public function send(message $message){
-        echo json_encode($message);
+        $returnMessage = array(
+            "text" => $message->text,
+            "replyType" => $message->replyType
+        );
+        echo json_encode($returnMessage);
     }
     
 }

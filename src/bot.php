@@ -55,8 +55,8 @@ class bot {
        if(!$outputMessage || !($outputMessage instanceof message)){
            throw new \Exception('output message not implements message class');
        }
-       if($interaction->needReply()){
-           $this->driver->session()->waitOfReply = get_class($interaction);
+       if($outputMessage->replyTo){
+           $this->driver->session()->waitOfReply = $outputMessage->replyTo;
        }
        
        $outputMessage->sid = $this->driver->getSid();
@@ -74,7 +74,7 @@ class bot {
         $interaction_namespace = $this->config["interaction_namespace"];
         
         /*Start interaction*/
-        if($this->driver->isNewCommunication($inputMessage) && isset($this->config["start_interaction"])){
+        if(($this->driver->isNewCommunication($inputMessage) || (@$this->config["start_message"] && $inputMessage->text == $this->config["start_message"])) && isset($this->config["start_interaction"])){
             
             $StartInteractionName = $this->config["start_interaction"];
             $interactionClass = "{$interaction_namespace}\\{$StartInteractionName}";

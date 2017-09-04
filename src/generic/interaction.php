@@ -22,8 +22,4 @@ abstract class interaction {
          throw new \Exception('ineraction not implement getOutputMessage function');
     }
     
-    public function needReply(){
-        return false;
-    }
-    
 }

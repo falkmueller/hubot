@@ -7,9 +7,7 @@ use hubot\generic\driver;
 use hubot\bot;
 
 class start extends \hubot\generic\interaction {
-    
-    protected $_needReply = false;
-    
+
     public function check(message $inputMessage)
     {
         
@@ -26,12 +24,12 @@ class start extends \hubot\generic\interaction {
         if(empty($inputMessage->text) || $inputMessage->text == "BOT_START"){
             $outputMessage->text = "Hello, my name is {$bot->values['name']}. Waht is your name?";
             $bot->driver->session()->user_name = null;
-            $this->_needReply = true;
+            $outputMessage->replyTo =  get_class($this);
         } elseif(empty($bot->driver->session()->user_name)) {
             $outputMessage->text = "Hello, {$inputMessage->text}. Where are you from?";
             $bot->driver->session()->user_name = $inputMessage->text;
             $bot->driver->session()->user_place = null;
-            $this->_needReply = true;
+            $outputMessage->replyTo =  get_class($this);
         } elseif(empty($bot->driver->session()->user_place)) {
             $bot->driver->session()->user_place = $inputMessage->text;
             $outputMessage->text = "Nice. Ask my for weather.";
@@ -39,10 +37,6 @@ class start extends \hubot\generic\interaction {
         
         
         return $outputMessage;
-    }
-    
-    public function needReply(){
-        return $this->_needReply;
     }
     
 }

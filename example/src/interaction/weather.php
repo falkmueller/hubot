@@ -6,9 +6,7 @@ use hubot\message;
 use hubot\bot;
 
 class weather extends \hubot\generic\interaction {
-    
-    protected $_needReply = false;
-    
+
     public function check(message $inputMessage)
     {
           if (preg_match('/weather/',$inputMessage->text)){
@@ -27,7 +25,8 @@ class weather extends \hubot\generic\interaction {
         } elseif(empty($bot->driver->session()->user_place)){
             $outputMessage->text = "Where are you from?";
             $bot->driver->session()->wheater_ask_place = true;
-            $this->_needReply = true;
+            $outputMessage->replyTo =  get_class($this);
+            return $outputMessage;
         }
         
         if($bot->driver->session()->user_place){
@@ -49,17 +48,13 @@ class weather extends \hubot\generic\interaction {
                 $outputMessage->text = "Is your place right? Where are you from?";
                 $bot->driver->session()->wheater_ask_place = true;
                 $bot->driver->session()->user_place = null;
-                $this->_needReply = true;
+                $outputMessage->replyTo =  get_class($this);
             }
             
         }
         
         
         return $outputMessage;
-    }
-    
-    public function needReply(){
-        return $this->_needReply;
     }
     
     private function exec($url){

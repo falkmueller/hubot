@@ -7,6 +7,7 @@ return array(
                    "driver_namespace" => "src\\driver",
                     "interaction_namespace" => "src\\interaction",
                     "start_interaction" => "start",
+                    "start_message" => "BOT_START",
                     "noMatch_interaction" => "notUnderstand",
                 ),
                
