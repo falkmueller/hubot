@@ -11,7 +11,7 @@ For more information on how to configure your web server, see the [Documentation
 
 ## Installation
 
-Hubert is available via Composer:
+Hubot is available via Composer:
 
 ```json
 {
@@ -20,3 +20,9 @@ Hubert is available via Composer:
     }
 }
 ```
+
+Then copy the content from "vendor/falkm/hubot/example" in root folder.
+```
+cp -a vendor/falkm/hubot/example/. .
+```
+
