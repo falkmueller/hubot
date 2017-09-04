@@ -1,5 +1,8 @@
 <?php
 
+// Suppress DateTime warnings, if not set already
+date_default_timezone_set(@date_default_timezone_get());
+
 //load autoloader
 if(file_exists("vendor/autoload.php")){
     require_once 'vendor/autoload.php';

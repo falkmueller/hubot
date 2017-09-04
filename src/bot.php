@@ -61,7 +61,7 @@ class bot {
        
        $outputMessage->sid = $this->driver->getSid();
        
-       if(@hubert()->config()->bots["log"]){
+       if(@hubert()->config()->bots["log"] && $outputMessage->logable){
            $logger = \hubert\extension\logger\factory::getLogger(hubert()->config()->logger["path"], 'bot-'.date("Y-m-d").'-'.$outputMessage->sid.'.log', \Monolog\Logger::INFO);
            $logger->info($inputMessage->text, ["from" => "user"]);
            $logger->info($outputMessage->text, ["from" => "bot"]);

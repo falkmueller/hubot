@@ -8,5 +8,6 @@ class message {
     public $sid;
     public $replyTo = null;
     public $replyType = null;
+    public $logable = true;
     
 }
